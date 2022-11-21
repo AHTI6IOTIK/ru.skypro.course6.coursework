@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="1" author="notify_service">
+        <createTable tableName="notification_task">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="chat_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_datetime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_message" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="notify_service">
+        <modifyDataType
+                tableName="notification_task"
+                columnName="notify_message"
+                newDataType="text"
+        />
+    </changeSet>
+    <changeSet id="3" author="notify_service">
+        <modifyDataType
+                tableName="notification_task"
+                columnName="chat_id"
+                newDataType="bigint"
+        />
+    </changeSet>
+</databaseChangeLog>
+
